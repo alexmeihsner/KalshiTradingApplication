@@ -1,0 +1,63 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: left;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+.header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.muted{opacity:.7}
+.toolbar{display:flex;justify-content:space-between;align-items:center;margin:12px 0 20px;gap:12px}
+.input{padding:.5rem .6rem;border:1px solid #ccc;border-radius:10px;background:#1a1a1a;color:#fff}
+.btn{padding:.5rem .75rem;border-radius:10px;border:1px solid #333;background:#2b2b2b;color:#fff;cursor:pointer}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.alert.error{padding:.5rem .75rem;border-radius:12px;background:#3a1d1d;color:#ffb3b3;border:1px solid #5b2a2a;margin-bottom:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:#1a1a1a;border-radius:16px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.card.center{text-align:center;margin-top:16px}
+.kv{list-style:none;margin:0;padding:0}
+.kv li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.kv li:last-child{border-bottom:none}
+.table{width:100%;border-collapse:collapse;font-size:.95rem}
+.table th,.table td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left}
+.pill{padding:2px 8px;border-radius:999px;background:rgba(255,255,255,.08);font-size:.8rem}
+.pos{color:#40d98b}.neg{color:#ff6b6b}
+.status-new{background:#264653}.status-partially_filled{background:#3a5a40}
+.status-filled{background:#2a9d8f}.status-canceled{background:#5c5c5c}.status-rejected{background:#7f1d1d}
+.logo.small{height:32px;width:32px}
+
