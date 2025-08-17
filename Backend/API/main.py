@@ -19,10 +19,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-BASE_DIR = Path(__file__).resolve().parents[2]  # -> KalshiTradingApplication/
-DIST_DIR = BASE_DIR / "frontend-app" / "myapp" / "dist"
 
-app.mount("/", StaticFiles(directory=str(DIST_DIR), html=True), name="spa")
 
 # ---------- Models ----------
 class Side(str, Enum):
@@ -167,3 +164,7 @@ def get_trade_stats(symbol: str, window: str = "30d"):
         sharpe=1.4,
         last_updated=now,
     )
+BASE_DIR = Path(__file__).resolve().parents[2]  # -> KalshiTradingApplication/
+DIST_DIR = BASE_DIR / "frontend-app" / "myapp" / "dist"
+#
+app.mount("/", StaticFiles(directory=str(DIST_DIR), html=True), name="spa")
