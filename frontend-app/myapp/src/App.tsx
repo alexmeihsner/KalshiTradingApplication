@@ -3,7 +3,9 @@ import './App.css'
 import TradingAppLogo from './assets/TradingAppLogo.png'
 
 // Configure your API base URL in .env.local as VITE_API_URL=http://localhost:8000
-const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
+// const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
+const API_BASE = import.meta.env.PROD ? "" : (import.meta.env.VITE_API_URL ?? "http://localhost:8000");
+
 
 // ---- Types matching the FastAPI scaffold ----
 export type AccountBalance = {
@@ -47,8 +49,6 @@ export type TradeStats = {
 }
 
 function App() {
-  const [count, setCount] = useState(0)
-
   // Dashboard state
   const [balance, setBalance] = useState<AccountBalance | null>(null)
   const [positions, setPositions] = useState<Position[]>([])
@@ -217,7 +217,7 @@ function App() {
 
         {/* Statistics */}
         <section className="card">
-          <h3>Statistics ({symbol})</h3>
+          <h3>Statistics {symbol}</h3>
           {!stats ? (
             <p className="muted">Loading…</p>
           ) : (
@@ -289,18 +289,6 @@ function App() {
           )}
         </section>
       </div>
-
-      {/* Demo counter (keep the Vite starter feel) */}
-      <div className="card center">
-        <button onClick={() => setCount((c) => c + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
