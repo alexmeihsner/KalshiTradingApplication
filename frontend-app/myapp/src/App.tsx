@@ -23,6 +23,10 @@ export type Position = {
   side: 'LONG' | 'SHORT'
 }
 
+export type AllMarkets = {
+  markets: string
+}
+
 export type Order = {
   id: string
   symbol: string
@@ -52,6 +56,7 @@ function App() {
   // Dashboard state
   const [balance, setBalance] = useState<AccountBalance | null>(null)
   const [positions, setPositions] = useState<Position[]>([])
+  const [markets, setMarkets] = useState<AllMarkets>()
   const [orders, setOrders] = useState<Order[]>([])
   const [stats, setStats] = useState<TradeStats | null>(null)
 
@@ -74,18 +79,20 @@ function App() {
     setLoading(true)
     setError(null)
     try {
-      const [b, p, o, s] = await Promise.all([
+      const [b, p, o, s, m] = await Promise.all([
         fetchJSON<AccountBalance>(`${API_BASE}/api/v1/account/balance`),
         fetchJSON<Position[]>(`${API_BASE}/api/v1/positions/open`),
         fetchJSON<Order[]>(`${API_BASE}/api/v1/orders/open`),
         fetchJSON<TradeStats>(
           `${API_BASE}/api/v1/trades/stats?symbol=${encodeURIComponent(symbol)}&window=30d`
         ),
+        fetchJSON<AllMarkets[]>(`${API_BASE}/api/v1/account/markets`),
       ])
       setBalance(b)
       setPositions(p)
       setOrders(o)
       setStats(s)
+      setMarkets(m)
     } catch (e: any) {
       setError(e?.message ?? 'Failed to load data')
     } finally {
@@ -287,6 +294,11 @@ function App() {
               </tbody>
             </table>
           )}
+        </section>
+        {/* All Markets */}
+        <section className="card">
+          <h3>All Markets Currently Active</h3>
+          {markets?.markets}
         </section>
       </div>
     </>
